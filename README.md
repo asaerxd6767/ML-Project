@@ -195,6 +195,7 @@ This project was designed, implemented, and reviewed by a team of five. Contribu
 | **Asser Mohammed** | [@asaerxd6767](https://github.com/asaerxd6767) | Repository setup, Lab 02 house-price notebooks, Lab 03 modeling, version control |
 | **Habiba Mahmoud** | [@habibamahmoud13](https://github.com/habibamahmoud13) | Dataset sourcing and preprocessing |
 | **Mostafa Aiman** | [@mostafaelwazzany](https://github.com/mostafaelwazzany) | Exploratory data analysis and visualization |
+| **Sara Ahmed** | [@Sarsoour](https://github.com/Sarsoour) | Lab 03 modelling and preprocessing |
 | **Akaber Ahmed** | — | Data cleaning and documentation |
 | **Steven Mounir** | — | Model evaluation and reporting |
 
