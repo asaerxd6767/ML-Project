@@ -1,6 +1,6 @@
-# Machine Learning — Practical Labs
+# Machine Learning Practical Labs
 
-A collaborative coursework repository for the **Machine Learning** practical track. It collects the lab notebooks, datasets, and supporting scripts produced throughout the semester, covering the full introductory pipeline — data cleaning, preprocessing, exploratory analysis, feature engineering, and regression modeling.
+A collaborative university coursework repository for the **Machine Learning** practical track. This project brings together a series of applied lab exercises focused on real-world data preparation, exploratory analysis, feature engineering, and regression modeling. It reflects the full introductory machine learning workflow, from cleaning raw datasets to evaluating predictive performance with standard metrics.
 
 ![Python](https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)
@@ -188,39 +188,28 @@ Models across Labs 02 and 03 are assessed with standard regression metrics:
 
 ## Collaborators
 
-This project was designed, implemented, and reviewed by a team of five. Contributions listed below reflect shared ownership across the lab workstreams rather than individual ranking.
+This project was designed, implemented, and reviewed by a team of six contributors. The contributions below reflect shared ownership across the different lab workstreams rather than individual ranking.
 
 | Member | GitHub | Focus |
 |---|---|---|
 | **Asser Mohammed** | [@asaerxd6767](https://github.com/asaerxd6767) | Repository setup, Lab 02 house-price notebooks, Lab 03 modeling, version control |
 | **Habiba Mahmoud** | [@habibamahmoud13](https://github.com/habibamahmoud13) | Dataset sourcing and preprocessing |
 | **Mostafa Aiman** | [@mostafaelwazzany](https://github.com/mostafaelwazzany) | Exploratory data analysis and visualization |
-| **Sara Ahmed** | [@Sarsoour](https://github.com/Sarsoour) | Lab 03 modelling and preprocessing |
+| **Sara Ahmed** | [@Sarsoour](https://github.com/Sarsoour) | Lab 03 modeling and preprocessing |
 | **Akaber Ahmed** | — | Data cleaning and documentation |
 | **Steven Mounir** | — | Model evaluation and reporting |
 
 ### Commit History
 
-The repository history below records the incremental work that built each lab.
+The project’s commit history is summarized below by contributor, linked GitHub profile, and total number of commits recorded in the repository.
 
-| Commit | Date | Description |
-|---|---|---|
-| `570c6c6` | 2026-10-09 | Initial commit |
-| `6275431` | 2026-10-09 | Add lab notebooks and `requirements.txt` |
-| `682e10a` | 2026-10-09 | Add `kc_house_data.csv` to `Lab02` |
-| `0cbd476` | 2026-10-09 | Merge pull request #1 from `Asser` |
-| `52998e6` | 2026-10-10 | Add pre-processing notebook for motorcycle sales prediction |
-| `dfdb93a` | 2026-10-10 | Merge pull request #2 from `Asser` |
-| `7e9a1c6` | 2026-10-11 | Improve functionality and performance of notebooks |
-| `7ad47c1` | 2026-10-12 | Add USA Housing Price Prediction notebook |
-| `f0ab62e` | 2026-10-13 | Enhance user experience and optimize performance |
-| `11d7b11` | 2026-10-13 | Lab 02 — Linear Regression (single feature) |
-| `b0581db` | 2026-10-13 | Remove `make_nb.py` and add `README.md` |
-| `756755a` | 2026-10-13 | Merge branch `Asser` into `main` |
-| `cc808ac` | 2026-10-13 | Merge branch `main` into `Asser` |
-| `ee92921` | 2026-10-15 | Add Lab 03 — multiple & polynomial regression notebooks |
-| `30f5331` | 2026-10-15 | Merge `origin/main` into `Asser` |
-
----
+| Contributor | GitHub Profile | Number of Commits |
+|---|---|---:|
+| <img src="https://github.com/mostafaelwazzany.png" width="80" alt="Mostafa Aiman's GitHub avatar" /> | [@mostafaelwazzany](https://github.com/mostafaelwazzany) | ![Mostafa's commits](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fsearch%2Fcommits%3Fq%3Drepo%253Aasaerxd6767%252FML-Project%2Bauthor%253Amostafaelwazzany&query=%24.total_count&label=commits) |
+| <img src="https://github.com/habibamahmoud13.png" width="80" alt="Habiba Mahmoud's GitHub avatar" /> | [@habibamahmoud13](https://github.com/habibamahmoud13) | ![Habiba's commits](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fsearch%2Fcommits%3Fq%3Drepo%253Aasaerxd6767%252FML-Project%2Bauthor%253Ahabibamahmoud13&query=%24.total_count&label=commits) |
+| <img src="https://github.com/asaerxd6767.png" width="80" alt="Asser Mohammed's GitHub avatar" /> | [@asaerxd6767](https://github.com/asaerxd6767) | ![Asser's commits](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fsearch%2Fcommits%3Fq%3Drepo%253Aasaerxd6767%252FML-Project%2Bauthor%253Aasaerxd6767&query=%24.total_count&label=commits) |
+| <img src="https://github.com/Sarsoour.png" width="80" alt="Sara Ahmed's GitHub avatar" /> | [@Sarsoour](https://github.com/Sarsoour) | ![Sara's commits](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fsearch%2Fcommits%3Fq%3Drepo%253Aasaerxd6767%252FML-Project%2Bauthor%253ASarsoour&query=%24.total_count&label=commits) |
+| **Akaber Ahmed** | — | No linked GitHub profile to attribute commits |
+| **Steven Mounir** | — | No linked GitHub profile to attribute commits |
 
 *Coursework repository for the Machine Learning practical track.*
