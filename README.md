@@ -199,6 +199,9 @@ This project was designed, implemented, and reviewed by a team of six contributo
 | **Akaber Ahmed** | — | Data cleaning and documentation |
 | **Steven Mounir** | — | Model evaluation and reporting |
 
+
+---
+
 ### Commit History
 
 The project’s commit history is summarized below by contributor, linked GitHub profile, and total number of commits recorded in the repository.
