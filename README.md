@@ -1,28 +1,30 @@
 # Machine Learning Practical Labs
 
-A collaborative university coursework repository for the **Machine Learning** practical track. This project brings together a series of applied lab exercises focused on real-world data preparation, exploratory analysis, feature engineering, and regression modeling. It reflects the full introductory machine learning workflow, from cleaning raw datasets to evaluating predictive performance with standard metrics.
+A collaborative university coursework repository for the **Machine Learning** practical track. The project covers the full introductory machine learning workflow — data cleaning, exploratory analysis, feature engineering, and model building — across both **regression** and **classification** problems.
 
 ![Python](https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikit-learn&logoColor=white)
 ![pandas](https://img.shields.io/badge/pandas-Data-150458?logo=pandas&logoColor=white)
-![Labs](https://img.shields.io/badge/labs-1%20%E2%80%93%203-success)
+![Labs](https://img.shields.io/badge/labs-1%20%E2%80%93%205-success)
 ![License](https://img.shields.io/badge/use-coursework-lightgrey)
 
 ---
 
 ## Overview
 
-This repository is maintained by a five-member team as part of the Machine Learning practical course. Each lab applies the concepts covered in the lectures — the learning paradigm, preprocessing, feature scaling, and the supervised learning workflow — to real-world datasets.
+This repository is maintained by a six-member team as part of the Machine Learning practical course. Each lab applies the concepts covered in the lectures — learning paradigms, preprocessing, feature scaling, and supervised learning — to real-world datasets.
 
-The work is organized by lab, with each notebook documenting its own problem statement, dataset, methodology, and evaluation.
+The work is organized by lab, with each notebook documenting its own problem statement, dataset, methodology, and evaluation. Labs 01–03 focus on regression; Labs 04–05 move into classification.
 
-> **Progression at a glance** — the labs build on each other, moving from raw cleaning to increasingly expressive regression models:
+> **Progression at a glance** — the labs build on each other, from raw data cleaning through regression to classification and model tuning:
 
 ```mermaid
 flowchart LR
     A["Lab 01<br/>Data Preprocessing<br/><i>Titanic</i>"] --> B["Lab 02<br/>Linear Regression<br/><i>Housing · Bike</i>"]
-    B --> C["Lab 03<br/>Multiple &amp; Polynomial<br/>Regression<br/><i>Housing · Insurance</i>"]
+    B --> C["Lab 03<br/>Multiple &amp; Polynomial<br/>Regression<br/><i>Housing · Insurance · Bike</i>"]
+    C --> D["Lab 04<br/>Logistic Regression<br/><i>Breast Cancer</i>"]
+    D --> E["Lab 05<br/>Decision Trees &amp; Ensembles<br/><i>Car Evaluation</i>"]
 ```
 
 ## Course Information
@@ -54,7 +56,17 @@ ML-Project/
 │   ├── HOUSEPRICE_multiple_Regeression.ipynb    # Multiple linear regression on King County
 │   ├── Polynomial_Regression2.ipynb             # Polynomial regression on medical insurance
 │   ├── kc_house_data.csv
-│   └── insurance.csv
+│   ├── insurance.csv
+│   └── team/
+│       ├── multi_features.ipynb                 # Multiple regression on bike sales
+│       ├── Polynomial.ipynb                     # Polynomial regression on bike sales
+│       └── BIKE DETAILS.csv
+├── Lab04/
+│   ├── Logistic Regression.ipynb                # Binary classification on breast cancer data
+│   └── data.csv
+├── Lab05/
+│   ├── decision_tree_classifier_tutorial.ipynb  # Decision trees, ensembles, and tuning
+│   └── car_evaluation.csv
 ├── requirements.txt
 └── README.md
 ```
@@ -124,6 +136,17 @@ Predicts medical `charges` from the insurance dataset (`insurance.csv`, 1,338 ro
 | MAE (train) | 2,765.40 |
 | MAE (test) | 2,767.14 |
 
+#### `team/` — Bike sales regression
+
+Two team notebooks apply the same regression techniques to `BIKE DETAILS.csv` (1,061 rows):
+
+| Notebook | Approach | Result |
+|---|---|---|
+| `multi_features.ipynb` | Multiple linear regression on `year`, `km_driven`, and `ex_showroom_price` | Test R² = 0.86; MSE = 227,671,573.86 |
+| `Polynomial.ipynb` | Encodes `seller_type`/`owner`, imputes missing prices, degree-3 polynomial features | Train R² = 0.80; test R² = −16.14 (severe overfitting) |
+
+> The degree-3 bike model is retained for comparison: its negative test R² demonstrates how high-degree polynomials can generalize poorly without regularization or cross-validation.
+
 #### Lab 03 workflow
 
 1. **Data loading** — read the CSV and inspect structure
@@ -133,13 +156,77 @@ Predicts medical `charges` from the insurance dataset (`insurance.csv`, 1,338 ro
 5. **Modeling** — `LinearRegression` over the transformed feature space
 6. **Evaluation** — MAE and R² for both train and test sets
 
+### Lab 04 — Logistic Regression (Breast Cancer Diagnosis)
+
+An introduction to **binary classification** using the Breast Cancer Wisconsin dataset (`data.csv`, 569 rows × 33 columns).
+
+- Target: `diagnosis`, mapped `M → 0` (malignant) and `B → 1` (benign)
+- Feature: `radius_mean` (single predictor) — the notebook also inspects nulls and duplicates during EDA
+- Stratified 75/25 split (`random_state=42`): 426 training and 143 test samples
+- Fits `LogisticRegression`, inspects the learned decision boundary, and evaluates with accuracy, confusion matrix, and classification report
+- Visualizes the sigmoid probability curve with the 0.5 threshold and boundary line
+- Demonstrates inference on a new measurement (`radius_mean = 14.5` → benign, probability 0.550)
+
+| Result | Value |
+|---|---|
+| Weight (w) / bias (b) | −1.029 / 15.125 |
+| Decision boundary (`radius_mean`) | 14.70 |
+| Test accuracy | 0.8601 |
+| Confusion matrix | `[[42, 11], [9, 81]]` |
+| F1 (malignant / benign) | 0.81 / 0.89 |
+
+> **Note:** The `diagnosis` mapping (0 = malignant, 1 = benign) means `predict_proba[:, 1]` is the probability of *benign*. The plot legend in the notebook currently labels this curve as `P(malignant | x)`; adjust the label if you present the figure.
+
+### Lab 05 — Decision Trees & Ensemble Methods (Car Evaluation)
+
+The most extensive lab: an end-to-end classification study on the Car Evaluation dataset (`car_evaluation.csv`, 1,728 rows × 7 columns), adapted from a Kaggle tutorial.
+
+**Dataset and preparation**
+
+- Features: `buying`, `maint`, `doors`, `persons`, `lug_boot`, `safety`; target: `class`
+- Target distribution is imbalanced: `unacc` 1,210, `acc` 384, `good` 69, `vgood` 65; no missing values
+- 80/20 split (`random_state=42`): 1,382 training and 346 test rows
+- Ordinal encoding with `category_encoders.OrdinalEncoder`
+- SMOTE oversampling explored to balance the training classes (975 samples per class)
+
+**Modeling and tuning**
+
+- Two baseline `DecisionTreeClassifier` models (`gini` and `entropy`, both `max_depth=3`) with tree visualizations via Graphviz
+- `GridSearchCV` over 126 decision-tree configurations (5-fold CV)
+- Additional tuned baselines: `LogisticRegression` (24 configurations) and `RandomForestClassifier` (216 configurations)
+- Confusion matrices, classification reports, and a multi-class ROC/AUC plot for model comparison
+
+| Model | Best parameters (tuned models) | CV accuracy | Test accuracy |
+|---|---|---:|---:|
+| Decision tree — Gini (`max_depth=3`) | — | — | 0.8179 |
+| Decision tree — Entropy (`max_depth=3`) | — | — | 0.8179 |
+| Decision tree — tuned | `entropy`, `max_depth=8`, `min_samples_split=10` | 0.9262 | **0.9422** |
+| Logistic regression — tuned | `C=1`, `penalty=l2`, `solver=saga` | 0.7721 | 0.7543 |
+| Random forest — tuned | `entropy`, `max_depth=20`, `n_estimators=200` | 0.9667 | **0.9682** |
+
+The tuned decision tree trains at 0.9327 vs. 0.9422 on test data, so it shows no sign of overfitting. The tuned random forest reaches 0.9682 on test but 1.0 on train, indicating it memorizes the training set.
+
+> **Note:** SMOTE-resampled arrays are computed but the reported models are fitted on the original training split. Re-running the comparison with `X_train_resampled` / `y_train_resampled` would make the balancing step effective.
+
 ## Models & Metrics
+
+### Regression
 
 | Model | Lab | Dataset (rows) | Test R² | Test MAE |
 |---|---|---|---|---|
 | Single-feature Linear Regression | 02 | King County | — | — |
 | Multiple Linear Regression | 03 | King County (21,613) | 0.71 | 126,051.39 |
 | Polynomial Regression (deg. 3) | 03 | Insurance (1,338) | 0.84 | 2,767.14 |
+| Multiple Linear Regression | 03 | Bike sales (1,061) | 0.86 | — |
+
+### Classification
+
+| Model | Lab | Dataset (rows) | Test accuracy | Macro F1 |
+|---|---|---|---|---|
+| Logistic Regression (single feature) | 04 | Breast Cancer (569) | 0.8601 | 0.85 |
+| Decision Tree — tuned | 05 | Car Evaluation (1,728) | 0.9422 | 0.7791 |
+| Random Forest — tuned | 05 | Car Evaluation (1,728) | 0.9682 | 0.9024 |
+| Logistic Regression — tuned | 05 | Car Evaluation (1,728) | 0.7543 | — |
 
 ## Tech Stack
 
@@ -148,7 +235,10 @@ Predicts medical `charges` from the insurance dataset (`insurance.csv`, 1,338 ro
 | Python 3 | Core language |
 | pandas / NumPy | Data manipulation and numerics |
 | Matplotlib / seaborn | Visualization and EDA |
-| scikit-learn | Preprocessing, splitting, and models |
+| scikit-learn | Preprocessing, splitting, models, and grid search |
+| category_encoders | Ordinal encoding of categorical features |
+| imbalanced-learn | SMOTE oversampling for imbalanced classes |
+| Graphviz | Rendering decision-tree diagrams |
 | Jupyter Notebook | Experimentation and reporting |
 
 Dependencies are pinned in [`requirements.txt`](requirements.txt).
@@ -174,15 +264,29 @@ pip install -r requirements.txt
 jupyter notebook
 ```
 
-Then open any notebook under `Lab01/`, `Lab02/`, or `Lab03/`. Datasets are stored alongside their notebooks, so run cells from the notebook's own directory (or update the file paths) to load the CSVs.
+Then open any notebook under `Lab01/` through `Lab05/`. Datasets are stored alongside their notebooks, so run cells from the notebook's own directory (or update the file paths) to load the CSVs.
+
+> **Reproducibility notes**
+> - `Lab04/Logistic Regression.ipynb` reads its CSV from a machine-specific absolute path (`C:\Users\LOQ\Downloads\archive (3)\data.csv`). Change it to `pd.read_csv("data.csv")` to use the repository copy.
+> - `Lab05/decision_tree_classifier_tutorial.ipynb` contains Google Colab mount/`cd` cells and in-notebook `!pip install` calls. Skip those cells locally (or guard them) and rely on `requirements.txt`.
+> - Rendering the tree diagrams in Lab 05 requires the Graphviz **system** executable (`dot`) in addition to the Python package.
 
 ## Evaluation
 
-Models across Labs 02 and 03 are assessed with standard regression metrics:
+Models are assessed with standard metrics appropriate to each task:
+
+**Regression (Labs 02–03)**
 
 - **MAE** — mean absolute error
 - **MSE / RMSE** — mean squared error and its square root
-- **R² score** — proportion of variance explained, reported for both train and test sets
+- **R² score** — proportion of variance explained, reported for train and test sets
+
+**Classification (Labs 04–05)**
+
+- **Accuracy** — proportion of correct predictions
+- **Confusion matrix** — breakdown of true/false positives and negatives
+- **Precision / Recall / F1** — per-class performance, plus macro and weighted averages
+- **ROC / AUC** — multi-class discrimination, plotted with a one-vs-rest strategy
 
 ---
 
